@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="testUL">
+    <li> index = 0</li>
+    <li> index = 1</li>
+    <li> index = 2</li>
+    <li> index = 3</li>
+  </ul>
+  <script type="text/javascript">
+    // 闭包是指有权访问另一个函数作用域中变量的函数，
+    // 创建闭包的最常见的方式就是在一个函数内创建另一个函数，
+    // 通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部
+    var nodes = document.getElementsByTagName("li");
+    //不用闭包的话，值每次都是4
+    for (i = 0; i < nodes.length; i += 1) {
+      // nodes[i].onclick = function () {
+      //   console.log(i);
+      // }
+      // 闭包写法
+      // 声明一个匿名函数作为闭包的外层
+      // 调用outterFunc时将i作为参数index的值传入；
+      // outterFunc方法返回的function(){console.log(idnex)}作为onclick的事件处理函数
+      function outterFunc (index) {
+        return function() {
+          console.log(index)
+        }
+      }
+      nodes[i].onclick = outterFunc(i);
+    }
+  </script>
+</body>
+</html>

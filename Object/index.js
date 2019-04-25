@@ -21,4 +21,5 @@ var person1 = new Person("Nicholas", 29, "SoftwareEngineer");
 var person2 = new Person("Greg", 27, "Doctor");
 console.log(person1.sayName === person2.sayName); // false
 console.log(person1.constructor === Person.prototype.constructor); // true
+console.log(person1.constructor === Person); // true
 

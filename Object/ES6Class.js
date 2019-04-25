@@ -13,9 +13,9 @@ class Person {
 const person1 = new Person();
 // console.log(person1.constructor === Person.prototype.constructor); // true
 // console.log(person1.__proto__.constructor === Person.prototype.constructor); // true
-console.log(person1.__proto__.constructor === Person); // true
+// console.log(person1.__proto__.constructor === Person); // true
 // console.log(person1.__proto__.constructor.prototype === Person.prototype); // true
-console.log('实例对象的私有属性', person1.__proto__ === Person.prototype); // true
+// console.log('实例对象的私有属性', person1.__proto__ === Person.prototype); // true
 // console.log(Person === Person.prototype.constructor); // true
 
 class Person2 extends Person {

@@ -1,10 +1,11 @@
 function Set() {
-  this.items = {}; //使用对象而不是数组来表示集合
+  this.items = {}; // 使用对象而不是数组来表示集合
   this.has = function(value) {
     // return value in items;
     return Object.prototype.hasOwnProperty.call(this.items, value);
-  }
-  /** 
+  };
+
+  /**
    * add() 集合中没有这个值就添加，返回true；反之返回false
   */
   this.add = (value) => {
@@ -13,9 +14,10 @@ function Set() {
       return true;
     }
     return false;
-  }
-  /** 
-   * 
+  };
+
+  /**
+   *
   */
   this.remove = (value) => {
     if (!this.has(value)) {
@@ -23,13 +25,14 @@ function Set() {
       return true;
     }
     return false;
-  }
-  /** 
-   * 
+  };
+
+  /**
+   *
   */
   this.clear = () => {
     this.items = {};
-  }
+  };
   // return this.items;
 }
 

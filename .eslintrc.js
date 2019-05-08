@@ -34,6 +34,17 @@ module.exports = exports = {
             "while": { "before": true, "after": true }
           }
         }],
+        "spaced-comment": [ERROR, "always", {
+          "line": {
+            "markers": ["/"],
+            "exceptions": ["-", "+"]
+          },
+          "block": {
+            "markers": ["!"],
+            "exceptions": ["*"],
+            "balanced": true
+          }
+        }],
         "semi": [ERROR, "always", { "omitLastInOneLineBlock": true}],
         indent: [
           ERROR,

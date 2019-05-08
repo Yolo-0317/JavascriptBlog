@@ -10,5 +10,5 @@
 * [Highchart自定义仪表盘1 渐变色](https://github.com/ShadowWalker627/JavascriptExam/issues/4)
 * [Highchart自定义蛛网图1 网格颜色设置](https://github.com/ShadowWalker627/JavascriptExam/issues/5)
 
-### 前端工程师的自检清单
+### [前端工程师的自检清单](https://mp.weixin.qq.com/s/VCoqyDnu0Lx4XlcCtQLZXg)
 * [前端工程师的自检清单-- JavaScript基础](https://github.com/ShadowWalker627/JavascriptExam/issues/6)

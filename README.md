@@ -4,3 +4,4 @@
 ###### 目录
 * [JavaScript类型相关知识](https://github.com/ShadowWalker627/JavascriptExam/issues/1)
 * [this相关知识点](https://github.com/ShadowWalker627/JavascriptExam/issues/2)
+* [浏览器事件](https://github.com/ShadowWalker627/JavascriptExam/issues/3)

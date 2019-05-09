@@ -1,9 +1,10 @@
-const a = 42;
-const b = 'abc';
-const c = null;
-console.log(a || b); // 42
-console.log(a && b);// "abc"
-console.log(c || b);// "abc"
-console.log(c && b);// null
-console.log(c && b);// null
-console.log(!!(c && b));// false
+if (!Number.isInteger) {
+  Number.isInteger = function (num) {
+    return (typeof num === 'number') && (num % 1 === 0);
+  };
+}
+// eslint-disable-next-line eqeqeq
+console.log('1' == 1); // true
+// eslint-disable-next-line prefer-template
+console.log(typeof ('1' + 1)); // '11'
+console.log([1, 2] + [3, 4]); // '1,23,4'

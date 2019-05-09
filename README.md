@@ -5,6 +5,7 @@
 * [JavaScript类型相关知识](https://github.com/ShadowWalker627/JavascriptExam/issues/1)
 * [this相关知识点](https://github.com/ShadowWalker627/JavascriptExam/issues/2)
 * [浏览器事件](https://github.com/ShadowWalker627/JavascriptExam/issues/3)
+* [浏览器存储](https://github.com/ShadowWalker627/JavascriptBlog/issues/8)
 
 ### highchart实例
 * [Highchart自定义仪表盘1 渐变色](https://github.com/ShadowWalker627/JavascriptExam/issues/4)

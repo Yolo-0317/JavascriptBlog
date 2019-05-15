@@ -20,3 +20,6 @@
 
 ### 功能实现
 * [防抖](https://codepen.io/ShadowWalker627/pen/EzZZJO) 输入防抖的例子
+
+### React框架知识
+* [React16新特性（更新日志翻译）](https://github.com/ShadowWalker627/JavascriptBlog/issues/10)

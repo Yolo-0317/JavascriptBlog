@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>防抖</title>
+</head>
+<body>
+  <div class="container">
+    <div>
+      输入联想，未防抖: <input id="nodebounce" placeholder="未防抖" />
+      <span id="console1" />
+    </div>
+    <div>
+      输入联想，已防抖: <input id="debounce" placeholder="已防抖" />
+      <span id="console2" />
+    </div>
+  </div>
+  
+  <script>
+    window.onload = function() {
+      var console1 = document.getElementById('console1');
+      var console2 = document.getElementById('console2');
+      function ajax(str, inputId) {
+        if (this.id === 'nodebounce') {
+          console1.innerText = str;
+        } else {
+          console2.innerText = str;
+        }
+      }
+      var timer = null;
+      // setTimeout中的this指向全局
+      function debounce(func, delay, immediate = false) {
+        let timer = null; // 定时器
+        let context = null; // 获取上下文对象，即this
+        let args = null; // 获取传入的参数
+        const later = () => setTimeout(
+          function() {
+            func.apply(context, args);
+          }.bind(context),
+          delay
+        );
+        // 定义延迟函数
+        function debounceFunc(...params) {
+          args = params;
+          context = this;
+          if (timer) {
+            // 已经触发过，再次触发，重新计时
+            clearTimeout(timer);
+            timer = later();
+          } else {
+            if (immediate) {
+              // 不需要防抖处理
+              func.apply(this, args);
+            } else {
+              timer = later();
+            }
+          }
+        }
+        debounceFunc.cancel = function () {
+          clearTimeout(timer);
+          timer = null;
+        };
+        return debounceFunc;
+      }
+      var inputNoDebounce = document.getElementById('nodebounce');
+      var inputDebounce = document.getElementById('debounce');
+
+      var debounceChange = debounce(ajax, 500);
+      function inputOnChange(event) {
+        if (event.target.id === 'nodebounce') {
+          ajax.call(this, event.target.value);
+        } else {
+          debounceChange.call(this, event.target.value); // 需要在ajax方法中获取input相关信息时
+          // debounceChange(event.target.value);
+          // debounceChange.cancel()
+        }
+      }
+
+      inputNoDebounce.addEventListener('keyup', inputOnChange);
+      inputDebounce.addEventListener('keyup', inputOnChange);
+    }
+  </script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import _ from 'lodash';
-import { GetSecInfoList } from 'js/configs/interfaces';
+
+const GithubApi = 'https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc';
 
 class SecAutoComplete extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class SecAutoComplete extends Component {
     this.state = {
       // The active selection's index
       activeSuggestion: 0,
-      // The suggestions that match the user's input
+      // 要展示的数据
       dataSource: [],
       // Whether or not the suggestion list is shown
       showSuggestions: false,
@@ -21,21 +22,16 @@ class SecAutoComplete extends Component {
   loadData = (queryStt) => {
     const {assetClass} = this.props;
     return new Promise((resolve) => {
-      $.get(GetSecInfoList, {
-          "tickerSymbol": queryStt,
-          assetClass
-      }).then(function(resp) {
-        if (resp.dy_code === 200) {
-          resolve(_.map(resp.dy_data, function(item) {
-            return {
-              label: item.tickerSymbol + '.' + item.exchangeCode + '-' + item.name,
-              value: item.tickerSymbol,
-              securityId: item.securityId,
-              tickerSymbol: item.tickerSymbol,
-              name: item.name
-            };
-          }));
-        }
+      $.get(GithubApi).then(function(resp) {
+        resolve(_.map(resp.items, function(item) {
+          return {
+            label: `${item.name}`,
+            value: item.full_name,
+            securityId: item.id,
+            tickerSymbol: item.full_name,
+            name: item.name
+          };
+        }));
       });
     });
     
@@ -83,7 +79,7 @@ class SecAutoComplete extends Component {
     }
   }
 
-  // Event fired when the user clicks on a suggestion
+  // 通过onMouseDown触发
   onClickMenuItem = (e, itemInfo) => {
     // Update the user input and reset the rest of the state
     // const { innerText: userInput } = e.currentTarget;

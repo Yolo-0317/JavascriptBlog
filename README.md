@@ -16,3 +16,6 @@
 
 ### 组件
 * [AutoComplete](https://codepen.io/ShadowWalker627/pen/WBrwgz)：完整代码：https://github.com/ShadowWalker627/JavascriptBlog/tree/master/Components/AutoComplete
+
+### 功能实现
+*[防抖] 输入防抖的例子(https://codepen.io/ShadowWalker627/pen/EzZZJO)

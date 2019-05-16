@@ -3,12 +3,15 @@ function debounce(func, delay, immediate = false) {
   let timer = null; // 定时器
   let context = null; // 获取上下文对象，即this
   let args = null; // 获取传入的参数
-  const later = () => setTimeout(
-    (() => {
-      func.apply(context, args);
-    }),
-    delay
-  );
+  const later = () => {
+    if (!timer) { context = null; args = null }
+    return setTimeout(
+      (() => {
+        func.apply(context, args);
+      }),
+      delay
+    );
+  };
   // 定义延迟函数
   function debounceFunc(...params) {
     args = params;

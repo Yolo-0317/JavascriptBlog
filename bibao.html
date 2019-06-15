@@ -33,6 +33,11 @@
       }
       nodes[i].onclick = outterFunc(i);
     }
+    // 那如果使用事件冒泡就可以避免使用闭包了
+    const ulNode = document.getElementById("testUL");
+    ulNode.onclick = function (e) {
+      console.log(e.target.innerText)
+    }
   </script>
 </body>
 </html>

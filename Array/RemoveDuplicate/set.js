@@ -10,5 +10,7 @@ const arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, 
 console.log(unique(arr));
 // [1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {}, {}]
 console.log({} === {}); // false
+console.log(NaN === NaN); // false
+console.log(isNaN(NaN));
 
 console.log('lodash: ', _.uniq(arr));

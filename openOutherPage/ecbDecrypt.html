@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ECB解密模式</title>
+  <script src="https://cdn.bootcss.com/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+</head>
+<body>
+  AES加密模式： <select>
+    <option value="">ECB</option>
+  </select>
+  填充：<select><option value="pkcs7">pkcs7padding</option></select>
+  是否需要decode：<input id="needDecode" type="checkbox" />
+  </br>
+  密码：<input id="keyInput" value="1234567812345678" />
+  </br>
+  原加密串：<textarea id="sourceInput" style="width: 400px;height: 100px;"></textarea>
+  </br>
+  <button id="decryptBtn">解密</button></br>
+  解密串：<div id="consoleDiv"></div>
+  <script>
+    window.onload = function () {
+      var decryptBtn = document.getElementById('decryptBtn');
+      var consoleDiv = document.getElementById('consoleDiv');
+      var sourceInput = document.getElementById('sourceInput');
+      var keyInput = document.getElementById('keyInput');
+      var needDecode = document.getElementById('needDecode');
+      var decodeStr = '';
+      decryptBtn.addEventListener('click', function (e) {
+        var key = CryptoJS.enc.Utf8.parse(keyInput.value);
+        if (needDecode.value) {
+          decodeStr = decodeURIComponent(sourceInput.value);
+        }
+        var deStr = CryptoJS.AES.decrypt(decodeStr, key, {
+          mode: CryptoJS.mode.ECB,
+          padding: CryptoJS.pad.Pkcs7,
+        });
+        consoleDiv.innerText = deStr.toString(CryptoJS.enc.Utf8);
+      })
+    }
+  </script>
+</body>
+</html>

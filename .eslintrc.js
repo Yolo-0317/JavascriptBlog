@@ -59,5 +59,6 @@ module.exports = exports = {
         'no-console': WARN,
         'no-use-before-define': OFF,
         'prefer-template': ERROR,
+        'no-proto': 0,
     }
 };

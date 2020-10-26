@@ -1,0 +1,136 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>百度地图API 展示多个地点</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+</head>
+<body style="background:#CBE1FF">
+    <div
+      style="
+        position: absolute;
+        width: 100%;
+        height: 900px;
+        background-color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      "
+      id="spin"
+    >
+      Loading...
+    </div>
+    <div style="width:100%;margin:auto;">   
+        <div id="container" 
+            style="position: absolute;
+                margin-top:30px; 
+                width: 100%; 
+                height: 790px; 
+                top: 50; 
+                border: 1px solid gray;
+                overflow:hidden;">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+  const iconPng = 'http://api.map.baidu.com/img/markers.png'
+  const commonIcon = new BMap.Icon(iconPng, new BMap.Size(23, 25), {
+      offset: new BMap.Size(10, 25), // 指定定位位置
+      imageOffset: new BMap.Size(0, 0 - 0 * 25) // 设置图片偏移使用左侧的图片
+    //  imageOffset: new BMap.Size(-20, 0 - 10 * 25) // 设置图片偏移使用右侧的图片0-x*25代表使用第x+1张图片
+  });
+  const driverIcon = new BMap.Icon(iconPng, new BMap.Size(23, 25), {
+      offset: new BMap.Size(10, 25), // 指定定位位置
+      imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移使用左侧的图片
+    //  imageOffset: new BMap.Size(-20, 0 - 10 * 25) // 设置图片偏移使用右侧的图片0-x*25代表使用第x+1张图片
+  });
+  const personAddrs = [
+    {name:"吴燕华", address:"宝山 - 友谊路（地铁1号线）",},
+    {name:"李兴", address:"长宁区-江苏路地铁站",},
+    {name:"朱一帆", address:"长宁区-金钟路",},
+    {name:"殷俊", address:"赤峰路曲阳路", isDriver: true},
+    {name:"陈文萍", address:"虹口区-华虹国际大厦",},
+    {name:"杨印", address:"闵行区 - 莘庄", isDriver: true},
+    {name:"赵亮", address:"闵行区-报春路", isDriver: true},
+    {name:"张红", address:"闵行区-顾戴路虹梅路",},
+    {name:"张哲源", address:"浦东-芳华路", isDriver: true},
+    {name:"浦超", address:"浦东-金桥", isDriver: true},
+    {name:"郭勇", address:"浦东区-三林",},
+    {name:"梁晶晶", address:"浦东区-耀华路",},
+    {name:"邱子恒", address:"浦东新区-长清路",},
+    {name:"于欢", address:"浦东新区-陈春路-13号线",},
+    {name:"张栋栋", address:"浦东新区-东明路地铁站",},
+    {name:"李鸿楠/李幸娟", address:"浦东新区-巨峰路",},
+    {name:"郭军", address:"浦东新区-莱阳路880弄",},
+    {name:"张成翊", address:"浦东新区-浦电路",},
+    {name:"张宁", address:"浦东新区-杨思路地铁站",},
+    {name:"陈宇航", address:"浦东新区-成山路地铁站", isDriver: true},
+    {name:"李冲冲", address:"青浦区-17号线赵巷地铁站",},
+    {name:"陈朝阳", address:"徐汇区 上海体育场站」",},
+    {name:"张颖", address:"徐汇区-龙吴路银都路", isDriver: true},
+    {name:"杨修良", address:"杨浦区 控江路 新华医院",},
+    {name:"佘嘉欣", address:"杨浦区-大连西路30弄密云小区",},
+    {name:"林恒妃", address:"杨浦区-长阳路1969弄",},
+    {name:"楼航飞", address:"静安区高平路汶水路",},
+    {name:"黄亚", address:"杨浦区国顺路300弄", isDriver: true},
+    {name:"孙培华", address:"宝山区长江南路32号"},
+    {name:"杨宇航", address:"嘉定区"},
+    {name:"张卓", address:"浦东新区 杨思路世华景城"},
+    {name:"丁科亮", address:"上海市浦东南路华丰路路口"},
+  ];
+  const addressArr = personAddrs.map(pr => pr.address);
+
+  const map = new BMap.Map("container");
+  map.centerAndZoom("上海", 12);
+  map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
+  map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+
+  map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+  map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+
+  const addr = [];
+
+  function map_init(markerArr) {
+    const point = new Array(); //存放标注点经纬信息的数组
+    const marker = new Array(); //存放标注点对象的数组
+    const info = new Array(); //存放提示信息窗口对象的数组
+    for (const i = 0; i < markerArr.length; i++) {
+      const {title, isDriver, point} = markerArr[i] || {};
+      const icon = isDriver ? driverIcon : commonIcon;
+        const p0 = point?.split(",")[0]; //
+        const p1 = point?.split(",")[1]; //按照原数组的point格式将地图点坐标的经纬度分别提出来
+        point[i] = new window.BMap.Point(p0, p1); //循环生成新的地图点
+        marker[i] = new window.BMap.Marker(point[i],  { icon }); //按照地图点坐标生成标记
+        map.addOverlay(marker[i]);
+        const label = new window.BMap.Label(title, { offset: new window.BMap.Size(20, -10) });
+        marker[i].setLabel(label);
+    }
+  }
+
+  const funcs = [];
+
+  personAddrs.forEach((ad, i) => {
+    const personName = ad?.name;
+    const keyword = ad?.address;
+    const localSearch = new BMap.LocalSearch(map);
+
+    map.clearOverlays();//清空原来的标注
+    const cb = (searchResult) => {
+      const poi = searchResult.getPoi(0);
+      // console.log(personName, poi)
+      addr.push(
+        { title: `${poi.title}-${personName}`, point: `${poi.point.lng},${poi.point.lat}`, address: `${poi.address}_${personName}`, isDriver: ad.isDriver },
+      )
+      if (addr.length === personAddrs.length) {
+        console.log(addr)
+        const spinEl = document.getElementById('spin');
+        spinEl.style.display = 'none'
+        map_init(addr);
+      }
+    }
+    localSearch.setSearchCompleteCallback(cb)
+    localSearch.search(keyword);
+  })
+  
+</script>
+</html>

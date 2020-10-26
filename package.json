@@ -19,7 +19,10 @@
     "eslint-config-airbnb": "^17.1.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "node-xlsx": "^0.15.0",
     "open": "^7.0.0",
-    "uuid": "^3.3.3"
+    "read-excel-file": "^4.0.7",
+    "uuid": "^3.3.3",
+    "xls-parser": "^3.1.0"
   }
 }

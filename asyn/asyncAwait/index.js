@@ -5,7 +5,7 @@
 const fs = require('fs');
 
 const readFile = function (fileName) {
-  console.log('readfile');
+  console.log('readfile', fileName);
   return new Promise(((resolve, reject) => {
     fs.readFile(fileName, (error, data) => {
       if (error) return reject(error);
@@ -19,7 +19,9 @@ const asyncReadFile = async function () {
   const f2 = await readFile('../generator/mock/2.txt');
   console.log(f2.toString());
   // console.log(f2.toString());
+  // throw new Error('出错了');
+
   return f1;
 };
 
-asyncReadFile().then((file) => { console.log(file.toString()); });
+asyncReadFile().then((file) => { console.log(file.toString()) }).catch(error => console.log(error));

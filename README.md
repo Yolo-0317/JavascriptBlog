@@ -13,6 +13,11 @@
 #### 浏览器
 * [跨域](https://github.com/ShadowWalker627/JavascriptBlog/issues/24)
 
+### JAVASCRIPT
+#### 代码题
+* [写一个函数，第一秒打印 1，第二秒打印 2](https://github.com/ShadowWalker627/JavascriptBlog/issues/25)
+* [将原生的 ajax GET 封装成 promise](https://github.com/ShadowWalker627/JavascriptBlog/issues/26)
+
 ### [前端工程师的自检清单](https://mp.weixin.qq.com/s/VCoqyDnu0Lx4XlcCtQLZXg)
 * [JavaScript基础](https://github.com/ShadowWalker627/JavascriptExam/issues/6)
 * [数据结构和算法--JavaScript编码能力](https://github.com/ShadowWalker627/JavascriptBlog/issues/9)

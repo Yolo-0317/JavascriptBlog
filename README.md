@@ -1,10 +1,8 @@
 ### Javascript知识点笔记
 代码思路来源：《你不知道的JavaScript》《JavaScript高级程序设计》
 * [JavaScript类型相关知识](https://github.com/ShadowWalker627/JavascriptExam/issues/1)
-* [this相关知识点](https://github.com/ShadowWalker627/JavascriptExam/issues/2)
 * [浏览器事件](https://github.com/ShadowWalker627/JavascriptExam/issues/3)
 * [浏览器存储](https://github.com/ShadowWalker627/JavascriptBlog/issues/8)
-* [闭包](https://github.com/ShadowWalker627/JavascriptBlog/issues/22)
 
 ### HTTP/HTML/浏览器
 #### HTTP
@@ -17,6 +15,13 @@
 #### 代码题
 * [写一个函数，第一秒打印 1，第二秒打印 2](https://github.com/ShadowWalker627/JavascriptBlog/issues/25)
 * [将原生的 ajax GET 封装成 promise](https://github.com/ShadowWalker627/JavascriptBlog/issues/26)
+
+#### 数据类型
+* [数据类型定义](https://github.com/ShadowWalker627/JavascriptBlog/issues/27)
+
+#### 经常考察的概念
+* [this相关知识点](https://github.com/ShadowWalker627/JavascriptExam/issues/2)
+* [闭包](https://github.com/ShadowWalker627/JavascriptBlog/issues/22)
 
 ### [前端工程师的自检清单](https://mp.weixin.qq.com/s/VCoqyDnu0Lx4XlcCtQLZXg)
 * [JavaScript基础](https://github.com/ShadowWalker627/JavascriptExam/issues/6)

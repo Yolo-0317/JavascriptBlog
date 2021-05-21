@@ -22,6 +22,7 @@
 #### 经常考察的概念
 * [this相关知识点](https://github.com/ShadowWalker627/JavascriptExam/issues/2)
 * [闭包](https://github.com/ShadowWalker627/JavascriptBlog/issues/22)
+* [箭头函数](https://github.com/ShadowWalker627/JavascriptBlog/issues/31)
 
 ### [前端工程师的自检清单](https://mp.weixin.qq.com/s/VCoqyDnu0Lx4XlcCtQLZXg)
 * [JavaScript基础](https://github.com/ShadowWalker627/JavascriptExam/issues/6)

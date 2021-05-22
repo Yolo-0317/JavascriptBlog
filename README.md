@@ -33,7 +33,7 @@ https://github.com/Advanced-Frontend/Daily-Interview-Question
 * [第 4 题：介绍下 Set、Map、WeakSet 和 WeakMap 的区别？](https://github.com/ShadowWalker627/JavascriptBlog/issues/32)
 * [第 5 题：介绍下深度优先遍历和广度优先遍历，如何实现？](https://github.com/ShadowWalker627/JavascriptBlog/issues/33)
 
-### [前端工程师的自检清单](https://mp.weixin.qq.com/s/VCoqyDnu0Lx4XlcCtQLZXg)
+### [前端工程师的自检清单]
 * [JavaScript基础](https://github.com/ShadowWalker627/JavascriptExam/issues/6)
 * [数据结构和算法--JavaScript编码能力](https://github.com/ShadowWalker627/JavascriptBlog/issues/9)
 

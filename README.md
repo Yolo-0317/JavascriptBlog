@@ -21,11 +21,16 @@
 * [写一个函数，第一秒打印 1，第二秒打印 2](https://github.com/ShadowWalker627/JavascriptBlog/issues/25)
 * [将原生的 ajax GET 封装成 promise](https://github.com/ShadowWalker627/JavascriptBlog/issues/26)
 
+### TYPESCRIPT
+* [进阶用法](https://github.com/ShadowWalker627/JavascriptBlog/issues/40)
+
 #### 数据类型
 * [数据类型定义](https://github.com/ShadowWalker627/JavascriptBlog/issues/27)
 
 #### 经常考察的概念
 * [this相关知识点](https://github.com/ShadowWalker627/JavascriptExam/issues/2)
+* [原型](https://github.com/ShadowWalker627/JavascriptBlog/issues/39)
+* 
 * [闭包](https://github.com/ShadowWalker627/JavascriptBlog/issues/22)
 * [箭头函数](https://github.com/ShadowWalker627/JavascriptBlog/issues/31)
 

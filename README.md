@@ -6,6 +6,11 @@
 
 ### HTTP/HTML/浏览器
 #### HTTP
+* [说一下 http2.0](https://github.com/ShadowWalker627/JavascriptBlog/issues/34)
+* [TCP 和 UDP 的区别](https://github.com/ShadowWalker627/JavascriptBlog/issues/35)
+* [说一下HTTP和HTTPS](https://github.com/ShadowWalker627/JavascriptBlog/issues/36)
+* [http 返回的状态码](https://github.com/ShadowWalker627/JavascriptBlog/issues/37)
+* [get 和 post 请求在缓存方面的区别](https://github.com/ShadowWalker627/JavascriptBlog/issues/38)
 #### HTML
 * [base标签](https://github.com/ShadowWalker627/JavascriptBlog/issues/23)
 #### 浏览器

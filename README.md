@@ -11,10 +11,13 @@
 * [说一下HTTP和HTTPS](https://github.com/ShadowWalker627/JavascriptBlog/issues/36)
 * [http 返回的状态码](https://github.com/ShadowWalker627/JavascriptBlog/issues/37)
 * [get 和 post 请求在缓存方面的区别](https://github.com/ShadowWalker627/JavascriptBlog/issues/38)
+* [浏览器输入url后](https://github.com/ShadowWalker627/JavascriptBlog/issues/43)
 #### HTML
 * [base标签](https://github.com/ShadowWalker627/JavascriptBlog/issues/23)
 #### 浏览器
 * [跨域](https://github.com/ShadowWalker627/JavascriptBlog/issues/24)
+* [浏览器事件](https://github.com/ShadowWalker627/JavascriptBlog/issues/41)
+* [HTML元信息标签](https://github.com/ShadowWalker627/JavascriptBlog/issues/42)
 
 ### JAVASCRIPT
 #### 代码题

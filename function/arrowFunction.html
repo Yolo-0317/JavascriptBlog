@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo() {
+      setTimeout(function() {
+        console.log('id:', this.id);
+      }, 100);
+    }
+    var id = 21;
+
+    foo.call({ id: 42 });
+    // id: 21
+  </script>
+</body>
+</html>

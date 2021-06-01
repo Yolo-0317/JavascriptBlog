@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>根据地址查询经纬度</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+</head>
+<body style="background:#CBE1FF">
+    <div
+      style="
+        position: absolute;
+        width: 100%;
+        height: 900px;
+        background-color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      "
+      id="spin"
+    >
+      Loading...
+    </div>
+    <div id="error"></div>
+    <div style="width:100%;margin:auto;">
+        <div id="container" 
+            style="position: absolute;
+                margin-top:30px; 
+                width: 100%; 
+                height: 790px; 
+                top: 50; 
+                border: 1px solid gray;
+                overflow:hidden;">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+  var commonIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+      offset: new BMap.Size(10, 25), // 指定定位位置
+      imageOffset: new BMap.Size(0, 0 - 0 * 25) // 设置图片偏移使用左侧的图片
+    //  imageOffset: new BMap.Size(-20, 0 - 10 * 25) // 设置图片偏移使用右侧的图片0-x*25代表使用第x+1张图片
+  });
+  var driverIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+      offset: new BMap.Size(10, 25), // 指定定位位置
+      imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移使用左侧的图片
+    //  imageOffset: new BMap.Size(-20, 0 - 10 * 25) // 设置图片偏移使用右侧的图片0-x*25代表使用第x+1张图片
+  });
+  const personAddrs = [
+  {name:"xx", address:"康桥半岛", isDriver: true},
+    {name:"xx", address:"川杨新苑三期"},
+    // {name:"钟涛", address:"青浦区汇金路"},
+    // {name:"胡思琴", address:"上海华佗路678弄"},
+    // {name:"吴义龙", address:"孙桥"},
+    // {name:"黄俊", address:"浦东新区张江建中路171弄", isDriver: true},
+    // {name:"胡婵娟", address:"申城佳苑"},
+    // {name:"董成成", address:"浦东新区张江建中路173弄"},
+    // {name:"林文", address:"御桥路2066弄e欧泊时光"},                                                                                               
+  ];
+  const addressArr = personAddrs.map(pr => pr.address);                                                                                                         
+
+  var map = new BMap.Map("container");                                                                                                                          
+  map.centerAndZoom("上海", 12);                                                                                                                                
+  map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用                                                                                                  
+  map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用                                                                                                   
+
+  map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件                                                                                         
+  map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件                                                                                         
+  // map.addControl(new BMap.OverviewMapControl({ isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开                                          
+
+  const addr = [];                                                                                                                                              
+
+  function map_init(markerArr) {                                                                                                                                
+    var point = new Array(); //存放标注点经纬信息的数组                                                                                                         
+    var marker = new Array(); //存放标注点对象的数组                                                                                                            
+    var info = new Array(); //存放提示信息窗口对象的数组                                                                                                        
+    for (var i = 0; i < markerArr.length; i++) {                                                                                                                
+        var p0 = markerArr[i].point.split(",")[0]; //                                                                                                           
+        var p1 = markerArr[i].point.split(",")[1]; //按照原数组的point格式将地图点坐标的经纬度分别提出来                                                        
+        point[i] = new window.BMap.Point(p0, p1); //循环生成新的地图点                                                                                          
+        marker[i] = new window.BMap.Marker(point[i],  {icon: markerArr[i].isDriver ? driverIcon : commonIcon}); //按照地图点坐标生成标记                        
+        // marker[i] = new window.BMap.Marker(point[i]); //按照地图点坐标生成标记                                                                               
+        map.addOverlay(marker[i]);                                                                                                                              
+        // marker[i].setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画                                                                                          
+        var label = new window.BMap.Label(`${markerArr[i].title}`, { offset: new window.BMap.Size(20, -10) });                                                  
+        marker[i].setLabel(label);                                                                                                                              
+    }
+  }
+
+  const funcs = [];                                                                                                                                             
+  const spinEl = document.getElementById('spin');                                                                                                         
+
+  personAddrs.forEach((ad, i) => {                                                                                                                              
+    const personName = ad?.name;                                                                                                                                
+    const keyword = ad?.address;                                                                                                                                
+    const localSearch = new BMap.LocalSearch(map);                                                                                                              
+
+    map.clearOverlays();//清空原来的标注                                                                                                                        
+    const cb = (searchResult) => {                                                                                                                              
+      const poi = searchResult.getPoi(0);                                                                                                                       
+      // console.log(personName, poi)  
+      if (poi) {
+        addr.push(                                                                                                                                                
+          { title: `${poi.title}-${personName}`, point: `${poi.point.lng},${poi.point.lat}`, address: `${poi.address}_${personName}`, isDriver: ad.isDriver },    
+        )
+      } else {
+        const errorDiv = document.getElementById('error');
+        errorDiv.innerText = `error: ${personName}: 地址有问题，请精确`
+        spinEl.style.display = 'none'                                                                                                                           
+      }                                                                                                                      
+      
+      if (addr.length === personAddrs.length) {                                                                                                                 
+        console.log(addr)                                                                                                                                       
+        spinEl.style.display = 'none'                                                                                                                           
+        map_init(addr);                                                                                                                                         
+      }
+    }
+    localSearch.setSearchCompleteCallback(cb)                                                                                                                   
+    localSearch.search(keyword);                                                                                                                                
+
+  })
+  
+</script>
+</html>

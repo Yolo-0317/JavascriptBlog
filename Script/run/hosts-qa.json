@@ -1,0 +1,14 @@
+{
+  "API_ROOT": "http://mof-gw-minsen.respool2.wmcloud-qa.com/mom_minsen",
+  "GW_ROOT": "http://mof-gw-minsen.respool2.wmcloud-qa.com/usermaster",
+  "IS_MIXED": true,
+  "base": "/authority/",
+  "rrp_cards_api": "http://mof-gw-minsen.respool2.wmcloud-qa.com/public/aladdin_adventure",
+  "ams_api": "http://mof-gw-minsen.respool2.wmcloud-qa.com",
+  "cloud_api": "https://gw.datayes-stg.com/cloud",
+  "rrp_url": "http://roboams-md-ci.respool2.wmcloud-qa.com",
+  "wechat_api": "http://mof-gw-minsen.respool2.wmcloud-qa.com/public/aladdin_weixin",
+  "usermaster_api": "http://mof-gw-minsen.respool2.wmcloud-qa.com/usermaster",
+  "oms_api": "http://mof-gw-minsen.respool2.wmcloud-qa.com/public/aladdin_oms",
+  "navi_api": "http://mof-gw-minsen.respool2.wmcloud-qa.com/minsen-navi"
+}

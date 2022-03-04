@@ -20,6 +20,7 @@
     >
       Loading...
     </div>
+    <div id="error"></div>
     <div style="width:100%;margin:auto;">
         <div id="container" 
             style="position: absolute;
@@ -44,41 +45,15 @@
     //  imageOffset: new BMap.Size(-20, 0 - 10 * 25) // 设置图片偏移使用右侧的图片0-x*25代表使用第x+1张图片
   });
   const personAddrs = [
-    {name:"吴燕华", address:"宝山 - 友谊路（地铁1号线）",},
-    {name:"李兴", address:"长宁区-江苏路地铁站",},                                                                                                              
-    {name:"殷俊", address:"赤峰路曲阳路", isDriver: true},                                                                                                      
-    {name:"陈文萍", address:"虹口区-华虹国际大厦",},                                                                                                            
-    {name:"赵亮", address:"闵行区-报春路", isDriver: true},                                                                                                     
-    {name:"张红", address:"闵行区-顾戴路虹梅路",},                                                                                                              
-    {name:"张哲源", address:"浦东-芳华路", isDriver: true},                                                                                                     
-    {name:"浦超", address:"浦东-金桥", isDriver: true},                                                                                                         
-    {name:"郭勇", address:"浦东区-三林",},                                                                                                                      
-    {name:"梁晶晶", address:"浦东区-耀华路",},                                                                                                                  
-    {name:"邱子恒", address:"浦东新区-长清路",},                                                                                                                
-    {name:"于欢", address:"浦东新区-陈春路-13号线",},                                                                                                           
-    {name:"李鸿楠/李幸娟", address:"浦东新区-巨峰路",},                                                                                                         
-    {name:"郭军", address:"浦东新区-莱阳路880弄",},                                                                                                             
-    {name:"张成翊", address:"浦东新区-浦电路",},                                                                                                                
-    {name:"张宁", address:"浦东新区-杨思路地铁站",},                                                                                                            
-    {name:"陈宇航", address:"浦东新区-成山路地铁站", isDriver: true},                                                                                           
-    {name:"李冲冲", address:"青浦区-17号线赵巷地铁站",},                                                                                                        
-    {name:"陈朝阳", address:"徐汇区 上海体育场站」",},                                                                                                          
-    {name:"张颖", address:"徐汇区-龙吴路银都路", isDriver: true},                                                                                               
-    {name:"杨修良", address:"杨浦区 控江路 新华医院",},                                                                                                         
-    {name:"佘嘉欣", address:"杨浦区-大连西路30弄密云小区",},                                                                                                    
-    {name:"林恒妃", address:"杨浦区-长阳路1969弄",},                                                                                                            
-    {name:"楼航飞", address:"静安区高平路汶水路",},                                                                                                             
-    {name:"黄亚", address:"杨浦区国顺路300弄", isDriver: true},                                                                                                 
-    {name:"孙培华", address:"宝山区长江南路32号"},                                                                                                              
-    {name:"丁科亮", address:"上海市浦东南路华丰路路口"},  
-    {name: "容婷", address: "杨浦区国顺路117弄"}                                                                                                      
-    // {name:"翁青沁", address:"天宝路临平路"},    
-    // {name:"杨印", address:"闵行区 - 莘庄", isDriver: true},                                                                                                     
-    // {name:"朱一帆", address:"长宁区-金钟路",},                                                                                                                  
-    // {name:"杨宇航", address:"嘉定区"},                                                                                                                          
-    // {name:"张卓", address:"浦东新区 杨思路世华景城"},                                                                                                           
-    // {name:"张栋栋", address:"浦东新区-东明路地铁站",},                                                                                                          
-                                                                                                    
+  {name:"xx", address:"康桥半岛", isDriver: true},
+    {name:"xx", address:"川杨新苑三期"},
+    // {name:"钟涛", address:"青浦区汇金路"},
+    // {name:"胡思琴", address:"上海华佗路678弄"},
+    // {name:"吴义龙", address:"孙桥"},
+    // {name:"黄俊", address:"浦东新区张江建中路171弄", isDriver: true},
+    // {name:"胡婵娟", address:"申城佳苑"},
+    // {name:"董成成", address:"浦东新区张江建中路173弄"},
+    // {name:"林文", address:"御桥路2066弄e欧泊时光"},                                                                                               
   ];
   const addressArr = personAddrs.map(pr => pr.address);                                                                                                         
 
@@ -111,6 +86,7 @@
   }
 
   const funcs = [];                                                                                                                                             
+  const spinEl = document.getElementById('spin');                                                                                                         
 
   personAddrs.forEach((ad, i) => {                                                                                                                              
     const personName = ad?.name;                                                                                                                                
@@ -120,13 +96,19 @@
     map.clearOverlays();//清空原来的标注                                                                                                                        
     const cb = (searchResult) => {                                                                                                                              
       const poi = searchResult.getPoi(0);                                                                                                                       
-      // console.log(personName, poi)                                                                                                                           
-      addr.push(                                                                                                                                                
-        { title: `${poi.title}-${personName}`, point: `${poi.point.lng},${poi.point.lat}`, address: `${poi.address}_${personName}`, isDriver: ad.isDriver },    
-      )
+      // console.log(personName, poi)  
+      if (poi) {
+        addr.push(                                                                                                                                                
+          { title: `${poi.title}-${personName}`, point: `${poi.point.lng},${poi.point.lat}`, address: `${poi.address}_${personName}`, isDriver: ad.isDriver },    
+        )
+      } else {
+        const errorDiv = document.getElementById('error');
+        errorDiv.innerText = `error: ${personName}: 地址有问题，请精确`
+        spinEl.style.display = 'none'                                                                                                                           
+      }                                                                                                                      
+      
       if (addr.length === personAddrs.length) {                                                                                                                 
         console.log(addr)                                                                                                                                       
-        const spinEl = document.getElementById('spin');                                                                                                         
         spinEl.style.display = 'none'                                                                                                                           
         map_init(addr);                                                                                                                                         
       }

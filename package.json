@@ -18,7 +18,7 @@
     "crypto-js": "^3.1.9-1",
     "eslint-config-airbnb": "^17.1.0",
     "lodash": "^4.17.11",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-xlsx": "^0.15.0",
     "officegen": "^0.6.4",
     "open": "^7.0.0",

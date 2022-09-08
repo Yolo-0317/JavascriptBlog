@@ -22,7 +22,7 @@
     "node-xlsx": "^0.15.0",
     "officegen": "^0.6.4",
     "open": "^7.0.0",
-    "read-excel-file": "^4.0.7",
+    "read-excel-file": "^4.1.0",
     "uuid": "^3.3.3",
     "xls-parser": "^3.1.0",
     "xml2json": "^0.12.0"
